@@ -20,7 +20,7 @@
 # MAX_LOOPS = None        # the vehicle loop can abort after this many iterations, when given a positive integer.
 # 
 # #CAMERA
-# CAMERA_TYPE = "PICAM"   # (PICAM|WEBCAM|CVCAM|CSIC|MOCK)
+# CAMERA_TYPE = "PICAM"   # (PICAM|WEBCAM|CVCAM|CSIC|V4L|MOCK)
 # IMAGE_W = 160
 # IMAGE_H = 120
 # IMAGE_DEPTH = 3         # default RGB=3, make 1 for mono
@@ -41,8 +41,8 @@
 # STEERING_CHANNEL = 1            #channel on the 9685 pwm board 0-15
 # STEERING_LEFT_PWM = 460         #pwm value for full left steering
 # STEERING_RIGHT_PWM = 290        #pwm value for full right steering
-STEERING_CHANNEL = 0
-STEERING_LEFT_PWM = 300 #400 middle
+STEERING_CHANNEL = 8              #channel on the 9685 pwm board 0-15
+STEERING_LEFT_PWM = 300           #400 middle
 STEERING_RIGHT_PWM = 500
 # 
 # #THROTTLE
@@ -50,7 +50,6 @@ STEERING_RIGHT_PWM = 500
 # THROTTLE_FORWARD_PWM = 500      #pwm value for max forward throttle
 # THROTTLE_STOPPED_PWM = 370      #pwm value for no movement
 # THROTTLE_REVERSE_PWM = 220      #pwm value for max reverse throttle
-THROTTLE_CHANNEL = 1
 THROTTLE_FORWARD_PWM = 450
 THROTTLE_STOPPED_PWM = 390
 THROTTLE_REVERSE_PWM = 330
@@ -103,6 +102,8 @@ THROTTLE_REVERSE_PWM = 330
 # PI_PASSWD = "raspberry"             # password is optional. Only used from Windows machine. Ubuntu and mac users should copy their public keys to the pi. `ssh-copy-id username@hostname`
 # PI_HOSTNAME = "raspberrypi.local"   # the network hostname or ip address
 # PI_DONKEY_ROOT = "/home/pi/mycar"   # the location of the mycar dir on the pi. this will be used to help locate the final model destination.
+PI_HOSTNAME = "192.168.8.108"   # the network hostname or ip address
+PI_DONKEY_ROOT = "/home/pi/emperor3"   # the location of the mycar dir on the pi. this will be used to help locate the final model destination.
 # 
 # # Region of interst cropping
 # # only supported in Categorical and Linear models.
@@ -123,7 +124,7 @@ THROTTLE_REVERSE_PWM = 330
 # JOYSTICK_STEERING_SCALE = 1.0       #some people want a steering that is less sensitve. This scalar is multiplied with the steering -1 to 1. It can be negative to reverse dir.
 # AUTO_RECORD_ON_THROTTLE = True      #if true, we will record whenever throttle is not zero. if false, you must manually toggle recording with some other trigger. Usually circle button on joystick.
 # CONTROLLER_TYPE='ps3'               #(ps3|ps4|xbox|nimbus|wiiu|F710)
-CONTROLLER_TYPE='JCU3912T'
+CONTROLLER_TYPE='JCU3912T'            #(ps3|ps4|xbox|nimbus|wiiu|F710)
 # USE_NETWORKED_JS = False            #should we listen for remote joystick control over the network?
 # NETWORK_JS_SERVER_IP = "192.168.0.1"#when listening for network joystick control, which ip is serving this information
 # JOYSTICK_DEADZONE = 0.0             # when non zero, this is the smallest throttle before recording triggered.
@@ -215,6 +216,7 @@ CONTROLLER_TYPE='JCU3912T'
 # AI_LAUNCH_DURATION = 0.0            # the ai will output throttle for this many seconds
 # AI_LAUNCH_THROTTLE = 0.0            # the ai will output this throttle value
 # AI_LAUNCH_ENABLE_BUTTON = 'R2'      # this keypress will enable this boost. It must be enabled before each use to prevent accidental trigger.
+# AI_LAUNCH_KEEP_ENABLED = False      # when False ( default) you will need to hit the AI_LAUNCH_ENABLE_BUTTON for each use. This is safest. When this True, is active on each trip into "local" ai mode.
 # 
 # #Scale the output of the throttle of the ai pilot for all model types.
 # AI_THROTTLE_MULT = 1.0              # this multiplier will scale every throttle value for all output from NN models
